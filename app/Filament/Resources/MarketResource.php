@@ -20,7 +20,7 @@ class MarketResource extends Resource
 {
     protected static ?string $model = Market::class;
 
-    protected static ?string $navigationGroup = 'Management';
+    protected static ?string $navigationGroup = 'General Management';
     protected static ?string $navigationIcon = 'heroicon-o-office-building';
     protected static ?string $navigationLabel = 'Mercats';
     protected static ?int $navigationSort = 1;

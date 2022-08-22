@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OwnerResource\Pages;
 use App\Filament\Resources\OwnerResource\RelationManagers;
+use App\Models\Market;
 use App\Models\Owner;
+use App\Models\Store;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
@@ -22,8 +24,8 @@ class OwnerResource extends Resource
 {
     protected static ?string $model = Owner::class;
 
-    protected static ?string $navigationGroup = 'Management';
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $navigationGroup = 'General Management';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
     protected static ?string $navigationLabel = 'Paradistes';
     protected static ?int $navigationSort = 3;
 
@@ -37,10 +39,24 @@ class OwnerResource extends Resource
                         TextInput::make('last_name')->required(),
                         TextInput::make('address')->required(),
                         TextInput::make('tax_number')->required(),
+                        // Select::make('market_id')
+                        //     ->relationship('market', 'name')->required(),
+                        // Select::make('store_id')
+                        //     ->relationship('store', 'name')->required(),
                         Select::make('market_id')
-                            ->relationship('market', 'name')->required(),
+                            ->label('Market')
+                            ->options(Market::all()->pluck('name', 'id')->toArray())
+                            ->reactive()
+                            ->afterStateUpdated(fn (callable $set) => $set('store_id', 0)),
                         Select::make('store_id')
-                            ->relationship('store', 'name')->required(),
+                            ->label('Store')
+                            ->options(function (callable $get) {
+                                $market = Market::find($get('market_id'));
+                                if (!$market) {
+                                    return Store::all()->pluck('name', 'id');
+                                }
+                                return $market->stores->pluck('name', 'id');
+                            }),
                     ])
             ]);
     }

@@ -16,7 +16,7 @@ class Store extends Model
         return $this->belongsTo(Market::class);
     }
 
-    public function owner()
+    public function owners()
     {
         return $this->hasMany(Owner::class);
     }

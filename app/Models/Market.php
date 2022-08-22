@@ -12,12 +12,12 @@ class Market extends Model
 
     protected $fillable = ['name', 'town', 'state'];
 
-    public function store()
+    public function stores()
     {
         return $this->hasMany(Store::class);
     }
 
-    public function owner()
+    public function owners()
     {
         return $this->hasMany(Owner::class);
     }
