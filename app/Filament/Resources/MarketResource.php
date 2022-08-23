@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MarketResource\Pages;
 use App\Filament\Resources\MarketResource\RelationManagers;
+use App\Filament\Resources\MarketResource\Widgets\MarketStatsOverview;
 use App\Models\Market;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -73,6 +74,13 @@ class MarketResource extends Resource
             'index' => Pages\ListMarkets::route('/'),
             'create' => Pages\CreateMarket::route('/create'),
             'edit' => Pages\EditMarket::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            MarketStatsOverview::class,
         ];
     }
 }

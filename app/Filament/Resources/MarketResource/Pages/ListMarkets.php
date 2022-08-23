@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\MarketResource\Pages;
 
 use App\Filament\Resources\MarketResource;
+use App\Filament\Resources\MarketResource\Widgets\MarketStatsOverview;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -14,6 +15,13 @@ class ListMarkets extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+        ];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            MarketStatsOverview::class,
         ];
     }
 }
