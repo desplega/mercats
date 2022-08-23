@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,5 +20,10 @@ class Owner extends Model
     public function store()
     {
         return $this->belongsTo(Store::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+       return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 }

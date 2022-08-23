@@ -39,10 +39,6 @@ class OwnerResource extends Resource
                         TextInput::make('last_name')->required(),
                         TextInput::make('address')->required(),
                         TextInput::make('tax_number')->required(),
-                        // Select::make('market_id')
-                        //     ->relationship('market', 'name')->required(),
-                        // Select::make('store_id')
-                        //     ->relationship('store', 'name')->required(),
                         Select::make('market_id')
                             ->label('Market')
                             ->options(Market::all()->pluck('name', 'id')->toArray())

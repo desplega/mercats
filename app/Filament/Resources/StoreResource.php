@@ -47,6 +47,7 @@ class StoreResource extends Resource
                 TextColumn::make('id')->sortable(),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('market.name')->sortable()->searchable(),
+                TextColumn::make('owner.full_name')->sortable()->searchable(),
                 TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
