@@ -7,6 +7,7 @@ use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\MultiSelect;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Pages\CreateRecord;
@@ -52,7 +53,9 @@ class UserResource extends Resource
                             ->label('Password Confirmation')
                             ->required(fn (Page $livewire): bool => $livewire instanceof CreateRecord)
                             ->minLength(6)
-                            ->dehydrated(false)
+                            ->dehydrated(false),
+                        MultiSelect::make('roles')
+                            ->relationship('roles', 'name')
                     ])
             ]);
     }
