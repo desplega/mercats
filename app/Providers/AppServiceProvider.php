@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Filament\Facades\Filament;
-use Filament\Navigation\UserMenuItem;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Vite;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Filament::registerTheme(
+            app(Vite::class)('resources/css/filament.css'),
+        );
+
         // Filament navigation group order
         Filament::registerNavigationGroups([
             'General Management',
