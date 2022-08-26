@@ -1,0 +1,1 @@
+<img src="{{ asset('/images/mercats-icon.png') }}" alt="Icon" class="h-6 w-6 object-contain" />

@@ -15,6 +15,7 @@ use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -70,6 +71,16 @@ class UserResource extends Resource
                 TextColumn::make('id')->sortable(),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
+                IconColumn::make('email_verified_at')
+                    ->options([
+                        'heroicon-o-check-circle',
+                        'heroicon-o-x-circle' => fn ($state): bool => $state === null,
+                    ])
+                    ->colors([
+                        'success',
+                        'danger' => fn ($state): bool => $state === null
+                    ])
+                    ->label('Verified'),
                 TagsColumn::make('roles.name'),
                 TextColumn::make('created_at')->dateTime(),
             ])
