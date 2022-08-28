@@ -10,7 +10,11 @@ class Owner extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['first_name', 'last_name', 'address', 'tax_number', 'market_id', 'store_id'];
+    protected $fillable = ['first_name', 'last_name', 'address', 'tax_number', 'market_id', 'store_id', 'attachments'];
+
+    protected $casts = [
+        'attachments' => 'array',
+    ];
 
     public function market()
     {

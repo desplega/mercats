@@ -21,6 +21,7 @@ return new class extends Migration
             $table->char('tax_number');
             $table->foreignId('market_id')->constrained()->cascadeOnDelete();
             $table->foreignId('store_id')->constrained()->cascadeOnDelete();
+            $table->string('attachments', 1024)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

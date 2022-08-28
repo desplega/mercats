@@ -9,6 +9,7 @@ use App\Models\Owner;
 use App\Models\Store;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -53,6 +54,11 @@ class OwnerResource extends Resource
                                 }
                                 return $market->stores->pluck('name', 'id');
                             }),
+                        FileUpload::make('attachments')
+                            ->multiple()
+                            ->directory('media/')
+                            ->preserveFilenames()
+                            ->enableDownload(),
                     ])
             ]);
     }
