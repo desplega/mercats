@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'Crea :etiqueta',
+    'title' => 'Crea :label',
 
     'breadcrumb' => 'Crea',
 
